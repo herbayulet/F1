@@ -30,6 +30,7 @@ const ListRace = () => {
 
   return (
     <FlatList
+      showsVerticalScrollIndicator={false}
       data={races}
       renderItem={renderItem}
       ListEmptyComponent={listEmptyComponent}

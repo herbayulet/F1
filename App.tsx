@@ -1,11 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import Race from "./src/screens/Race";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useRaces } from "./src/func/useRace";
+import Layout from "./src/components/UI/Layout";
+import ListRace from "./src/components/List/ListRace";
 
 export default function App() {
+  const { races } = useRaces();
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      {/* <Race /> */}
       <StatusBar style="auto" />
+      <SafeAreaView>
+        <Race />
+      </SafeAreaView>
     </View>
   );
 }
@@ -13,8 +22,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: "center",
+    // justifyContent: "center",
   },
 });

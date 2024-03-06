@@ -30,7 +30,7 @@ const RacesItem = ({ item, index }: RacesItemProps) => {
               <View className="border-r-[1px] p-1 h-14 mr-1 border-slate-200" />
             </View>
             <View className="flex-col ml-2">
-              <Text className="text-rose-400 text-base">
+              <Text className="text-rose-400 text-sm">
                 ROUND {item?.circuit?.id}
               </Text>
               <View className="flex-row items-center justify-between w-80">

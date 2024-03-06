@@ -21,7 +21,7 @@ const RacesItem = ({ item, index }: RacesItemProps) => {
             <View className="flex-row">
               <View className="flex-col items-center justify-center">
                 <Text className="text-slate-500">03-05</Text>
-                <View className="bg-slate-300 w-9 px-[5px] items-center justify-center rounded-xl">
+                <View className="bg-slate-300 w-9 px-[5px] items-center justify-center rounded-lg">
                   <Text className="text-center text-slate-700 font-semibold text-base">
                     Nov
                   </Text>

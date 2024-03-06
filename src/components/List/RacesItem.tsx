@@ -27,7 +27,7 @@ const RacesItem = ({ item, index }: RacesItemProps) => {
                   </Text>
                 </View>
               </View>
-              <View className="border-r-[1px] p-1 h-16 mr-1 border-slate-200" />
+              <View className="border-r-[1px] p-1 h-14 mr-1 border-slate-200" />
             </View>
             <View className="flex-col ml-2">
               <Text className="text-rose-400 text-base">

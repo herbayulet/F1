@@ -1,11 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { ResponseRacesItem } from "../common";
+import { ResponseData, ResponseRacesItem } from "../common/typeRaces";
 import Layout from "../UI/Layout";
 import { Entypo } from "@expo/vector-icons";
+import { useFonts } from "expo-font";
 
-interface RacesItemProps {
-  item: ResponseRacesItem;
+export interface RacesItemProps {
+  item: ResponseData;
   index: number;
 }
 

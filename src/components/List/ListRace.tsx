@@ -1,16 +1,28 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
-import React, { useCallback } from "react";
-import { useRaces } from "../../func/useRace";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
+import React, { useCallback, useEffect } from "react";
 import { FlashList, ListRenderItem } from "@shopify/flash-list";
-import { ResponseRacesItem } from "../common";
-import RacesItem from "./RacesItem";
-import Layout from "../UI/Layout";
+import { ResponseRacesItem } from "../common/typeRaces";
+import RacesItem, { RacesItemProps } from "./RacesItem";
+import { useRaces } from "../../func/useRace";
 
 const ListRace = () => {
-  const { races } = useRaces();
-  const data = races;
+  const { races, refreshRaces, fontsLoaded } = useRaces();
 
-  const renderItem: ListRenderItem<ResponseRacesItem> = useCallback(
+  useEffect(() => {
+    refreshRaces();
+  }, []);
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator />;
+  }
+
+  const renderItem: ListRenderItem<RacesItemProps["item"]> = useCallback(
     ({ item, index }) => <RacesItem item={item} index={index} />,
     []
   );
@@ -41,7 +53,7 @@ const ListRace = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Make sure the container takes the full height/width
+    flex: 1,
     // alignItems: "center",
     // justifyContent: "center",
   },

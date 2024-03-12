@@ -4,8 +4,10 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      display: ["Formula1-Black", "Formula1-Regular-1", "Formula1-Wide"],
-      body: ["Formula1-Bold-4", "Formula1-Wide", "Formula1-Regular-1"],
+      fblack: "Formula1-Black",
+      fregular: "Formula1-Regular-1",
+      fwide: "Formula1-Wide",
+      fbold: "Formula1-Bold-4",
     },
   },
   plugins: [],

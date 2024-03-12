@@ -12,18 +12,20 @@ import RacesItem, { RacesItemProps } from "./RacesItem";
 import { useRaces } from "../../func/useRace";
 
 const ListRace = () => {
-  const { races, refreshRaces, fontsLoaded } = useRaces();
+  const { races, refreshRaces, fontsLoaded, sortRaces } = useRaces();
 
-  useEffect(() => {
-    refreshRaces();
-  }, []);
+  // useEffect(() => {
+  //   refreshRaces();
+  // }, []);
 
-  if (!fontsLoaded) {
-    return <ActivityIndicator />;
-  }
+  // if (!fontsLoaded) {
+  //   return <ActivityIndicator />;
+  // }
 
   const renderItem: ListRenderItem<RacesItemProps["item"]> = useCallback(
-    ({ item, index }) => <RacesItem item={item} index={index} />,
+    ({ item, index }) => (
+      <RacesItem item={item} index={index} sort={sortRaces} />
+    ),
     []
   );
 
@@ -34,7 +36,7 @@ const ListRace = () => {
 
   const listEmptyComponent = useCallback(() => {
     return (
-      <View>
+      <View className="flex-1 items-center justify-center">
         <Text>Tidak ada data ....</Text>
       </View>
     );

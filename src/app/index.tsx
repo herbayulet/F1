@@ -1,20 +1,16 @@
 import { StatusBar } from "expo-status-bar";
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import Race from "./src/screens/Race";
+import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRaces } from "./src/func/useRace";
-import Layout from "./src/components/UI/Layout";
-import ListRace from "./src/components/List/ListRace";
+import Race from "../screens/Race";
+import { Link } from "expo-router";
 
 export default function App() {
-  const { races } = useRaces();
   return (
     <View style={styles.container}>
       {/* <Race /> */}
       <StatusBar style="auto" />
-      <SafeAreaView>
-        <Race />
-      </SafeAreaView>
+      <Link href={"/about"}>Go to About</Link>
+      <Race />
     </View>
   );
 }

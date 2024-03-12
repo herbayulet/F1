@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchRacesData } from "../../services/racesData";
 import { ResponseRacesItem } from "../components/common/typeRaces";
 import { useFonts } from "expo-font";
+import dayjs from "dayjs";
 
 export const useRaces = () => {
   const [races, setRaces] = useState<ResponseRacesItem[]>([]);
@@ -23,7 +24,8 @@ export const useRaces = () => {
       const refreshedData = await fetchRacesData();
       setRaces(refreshedData);
     } catch (error) {
-      setError(error);
+      // setError(error);
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -35,7 +37,8 @@ export const useRaces = () => {
         const data = await fetchRacesData();
         setRaces(data);
       } catch (error) {
-        setError(error);
+        // setError(error);
+        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -44,5 +47,9 @@ export const useRaces = () => {
     fetchData();
   }, []);
 
-  return { races, loading, error, refreshRaces, fontsLoaded };
+  const sortRaces = races.sort((r1, r2) => {
+    dayjs(r2.date).diff(dayjs(r1.date));
+  });
+
+  return { races, loading, error, refreshRaces, fontsLoaded, sortRaces };
 };

@@ -8,11 +8,13 @@ import {
 import React, { useCallback, useEffect } from "react";
 import { FlashList, ListRenderItem } from "@shopify/flash-list";
 import { ResponseRacesItem } from "../common/typeRaces";
-import RacesItem, { RacesItemProps } from "./RacesItem";
+import RacesItem from "./RacesItem";
 import { useRaces } from "../../func/useRace";
+import { Link } from "expo-router";
+import dayjs from "dayjs";
 
 const ListRace = () => {
-  const { races, refreshRaces, fontsLoaded, sortRaces } = useRaces();
+  const { races, datas, refreshRaces, fontsLoaded } = useRaces();
 
   // useEffect(() => {
   //   refreshRaces();
@@ -22,12 +24,9 @@ const ListRace = () => {
   //   return <ActivityIndicator />;
   // }
 
-  const renderItem: ListRenderItem<RacesItemProps["item"]> = useCallback(
-    ({ item, index }) => (
-      <RacesItem item={item} index={index} sort={sortRaces} />
-    ),
-    []
-  );
+  const sortRaces = datas.sort((r1, r2) => {
+    return dayjs(r2.date).diff(dayjs(r1.date));
+  });
 
   const keyExtractor = useCallback(
     (item: ResponseRacesItem) => item.id?.toString() ?? "",
@@ -36,7 +35,7 @@ const ListRace = () => {
 
   const listEmptyComponent = useCallback(() => {
     return (
-      <View className="flex-1 items-center justify-center">
+      <View style={styles.container}>
         <Text>Tidak ada data ....</Text>
       </View>
     );
@@ -45,8 +44,8 @@ const ListRace = () => {
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
-      data={races}
-      renderItem={renderItem}
+      data={sortRaces}
+      renderItem={({ item, index }) => <RacesItem index={index} item={item} />}
       ListEmptyComponent={listEmptyComponent}
       keyExtractor={keyExtractor}
     />
@@ -56,8 +55,8 @@ const ListRace = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

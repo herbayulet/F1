@@ -9,7 +9,6 @@ export default function App() {
     <View style={styles.container}>
       {/* <Race /> */}
       <StatusBar style="auto" />
-      <Link href={"/about"}>Go to About</Link>
       <Race />
     </View>
   );

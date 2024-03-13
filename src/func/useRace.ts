@@ -3,11 +3,13 @@ import { fetchRacesData } from "../../services/racesData";
 import { ResponseRacesItem } from "../components/common/typeRaces";
 import { useFonts } from "expo-font";
 import dayjs from "dayjs";
+import racesis from "../../assets/data/races.json";
 
 export const useRaces = () => {
   const [races, setRaces] = useState<ResponseRacesItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null as Error | null);
+  const datas = racesis.data.races.response;
 
   const [fontsLoaded] = useFonts({
     "F1-Black": require("../../assets/fonts/Formula1-Black.ttf"),
@@ -48,8 +50,8 @@ export const useRaces = () => {
   }, []);
 
   const sortRaces = races.sort((r1, r2) => {
-    dayjs(r2.date).diff(dayjs(r1.date));
+    return dayjs(r2.date).diff(dayjs(r1.date));
   });
 
-  return { races, loading, error, refreshRaces, fontsLoaded, sortRaces };
+  return { races, loading, error, refreshRaces, fontsLoaded, sortRaces, datas };
 };
